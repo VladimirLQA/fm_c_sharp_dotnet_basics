@@ -129,8 +129,30 @@ public class LINQHandling
             .SingleOrDefault(name => name == "Lemon");
 
         Console.WriteLine($"Use predicate for 'single/first': {pickByName}");
-        var randomStr = (int len = 10) => Guid.NewGuid().ToString("N").PadLeft(len, '0')[..len];
 
-        Console.WriteLine($"GUID with 'N' to string type: {randomStr(60)}");
+        var managers = new[]
+        {
+            new { ManagerName = "John", Employees = new[] { "Mike", "Jane" } },
+            new { ManagerName = "Sara", Employees = new[] { "Peter", "Chris" } },
+        };
+
+        var allEmployees = managers.SelectMany(m => m.Employees);
+
+        Console.WriteLine(
+            "\n\nflattens the employee arrays from each manager into a single sequence of employees"
+        );
+        foreach (var employee in allEmployees)
+        {
+            Console.WriteLine(employee);
+        }
+
+        string newStr = "Fantt,dreamsabout";
+        string[] splittedStr = newStr.Split(',');
+
+        Console.WriteLine($"splittedStr length {splittedStr.Length}");
+        foreach (var str in splittedStr)
+        {
+            Console.WriteLine($"splittedStr does not contain character in separator {str}");
+        }
     }
 }
