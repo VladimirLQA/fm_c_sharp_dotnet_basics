@@ -32,5 +32,15 @@ public class StringHandling
         {
             Console.WriteLine("Strings are equal");
         }
+
+        /*
+        * - creates a new random GUID
+        * - toString("N") - formats as a 32-character lowercase hexadecimal string with no hyphens
+        * - PadLeft(length, '0')
+        * - [..length] - range operator - takes the first 'length' characters (inclusive start, exclusive end)
+        */
+        var randomStr = (int len = 10) => Guid.NewGuid().ToString("N").PadLeft(len, '0')[..len];
+
+        Console.WriteLine($"GUID with 'N' to string type: {randomStr(60)}");
     }
 }
